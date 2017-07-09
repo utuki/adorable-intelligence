@@ -33,11 +33,11 @@
 (defn welcome [first-name]
   [{:action "typing_on"}
    {:delay 3000}
-   {:message (templates/text-message (str "Welcome " first-name " =)"))}
-   {:message (templates/image-message "https://upload.wikimedia.org/wikipedia/commons/e/ef/Tunturisopuli_Lemmus_Lemmus.jpg")}
+   {:message (templates/text-message (str "Greetings " first-name ",earthling from the past ^_^"))}
+   {:message (templates/image-message "http://cdn.wallpapersafari.com/98/96/ItPVai.jpg")}
    {:delay 1000}
-   {:message (templates/button-template "Want to see the work of previous lemmings survivors?"
-                                        [(templates/postback-button "Show them to me!" "GET_LEMMINGS_BOTS")])}])
+   {:message (templates/button-template "Wanna know your cute-ability score?"
+                                        [(templates/postback-button "Roarrr!" "GET_CUTABILITY")])}])
 
 (defn error []
   [{:message (templates/text-message "Sorry, I didn't get that! :(")}])
@@ -102,3 +102,16 @@
 (defn send-lemmings-bots []
   [{:message (templates/text-message "Let me show you some examples of what your predecessors created:")}
    {:message (templates/generic-template (shuffle lemmings-bots))}])
+
+
+; Next we define the cuteness percentage
+(def cute_averages ["3.1415926"
+                    "27"
+                    "42"
+                    "69"
+                    "99"])
+
+(defn rate-cutability []
+  [{:message (templates/text-message "to cute or not to cute, thats here the question!")}
+   (let [cute_average (rand-nth cute_averages)]
+     {:message (templates/text-message (str "Your average cuteness score is " cute_average " percent."))})])

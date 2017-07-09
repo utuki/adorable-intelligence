@@ -22,6 +22,8 @@
 ;                                             :type "postback"
 ;                                             :payload "GET_LEMMINGS_BOTS"}
 
+
+
 (defn on-message [event]
   ; Called by handle-message when the user has sent a text message
   (println "on-message event:")
@@ -68,7 +70,8 @@
     (cond
       (= postback "GET_STARTED") (outgoing/welcome)
       (= postback "GET_HELP") (outgoing/help)
-      (= postback "GET_LEMMINGS_BOTS") (outgoing/send-lemmings-bots)
+      ;(= postback "GET_LEMMINGS_BOTS") (outgoing/send-lemmings-bots)
+      (= postback "GET_CUTABILITY") (outgoing/rate-cutability)
       :else (outgoing/error))))
 
 (defn on-attachments [event]
